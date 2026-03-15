@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "extraKnownMarketplaces": {
+    "tlab-research": {
+      "source": "github",
+      "repo": "murattasdemir/tlab-research"
+    }
+  },
+  "permissions": {
+    "allow": [
+      "Bash(git status *)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git branch *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)",
+      "Bash(git pull *)",
+      "Bash(git fetch *)",
+      "Bash(git checkout *)",
+      "Bash(git merge *)",
+      "Bash(git stash *)",
+      "Bash(gh pr *)",
+      "Bash(gh run *)",
+      "Bash(gh api *)",
+      "Bash(gh pr list *)",
+      "Bash(gh pr view *)",
+      "Bash(gh pr merge *)",
+      "Bash(gh pr create *)",
+      "Bash(gh repo *)",
+      "Bash(pdflatex *)",
+      "Bash(xelatex *)",
+      "Bash(latexmk *)",
+      "Bash(bibtex *)",
+      "Bash(biber *)",
+      "Bash(pdfinfo *)",
+      "Bash(quarto render *)",
+      "Bash(Rscript *)",
+      "Bash(python3 *)",
+      "Bash(uv run *)",
+      "Bash(chmod *)",
+      "Bash(open *)",
+      "Bash(xdg-open *)",
+      "Bash(ls *)",
+      "Bash(wc *)",
+      "Bash(sort *)",
+      "Bash(for *)",
+      "Bash(gs *)",
+      "Bash(pdftk *)",
+      "Bash(mkdir *)"
+    ]
+  }
+}

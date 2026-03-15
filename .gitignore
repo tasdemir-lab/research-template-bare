@@ -1,0 +1,73 @@
+# ── Data ──────────────────────────────────────────────
+/data/raw/**
+!/data/raw/**/
+!/data/raw/**/CODEBOOK.md
+!/data/raw/**/README.md
+!/data/raw/**/*.pdf
+/data/interim/
+/data/final/
+
+# ── Rendered outputs from .qmd (working copies) ──────
+/code/*.html
+/code/*.md
+!/code/*_notes.md
+/code/*.pdf
+/code/explorations/*.html
+/code/explorations/*.md
+/code/explorations/*.pdf
+
+# ── Generated outputs (reproducible from code) ───────
+# Figures, tables, and compiled documents are regenerated
+# from source. Use `gh release` to distribute final PDFs.
+/output/figures/*
+!/output/figures/.gitkeep
+/output/tables/*
+!/output/tables/.gitkeep
+/output/logs/*
+!/output/logs/.gitkeep
+/paper/*.pdf
+/paper/slides/*.pdf
+
+# ── Private workspace (`_` prefix) ───────────────────
+/_lab/
+/_lit/
+/_trash/
+/tmp/
+
+# ── R / Python / Quarto artifacts ────────────────────
+.Rproj.user
+.Rhistory
+.RData
+.Renviron
+.quarto/
+*_files/
+*_cache/
+*.log
+*.aux
+*.synctex.gz
+*.out
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.nav
+*.snm
+*.toc
+*.vrb
+.venv/
+__pycache__/
+
+# ── AI session artifacts ──────────────────────────────
+/.council/
+/session_logs/
+
+# ── Plugin-synced rules (derived from tlab plugin) ───
+/.claude/rules/_plugin_*
+
+# ── Claude Code local state ──────────────────────────
+/.claude/state/
+/.claude/settings.local.json
+
+# ── OS ────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
