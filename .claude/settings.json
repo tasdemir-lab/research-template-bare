@@ -3,7 +3,7 @@
   "extraKnownMarketplaces": {
     "tlab-research": {
       "source": "github",
-      "repo": "murattasdemir/tlab-research"
+      "repo": "tasdemir-lab/tlab-research"
     }
   },
   "permissions": {

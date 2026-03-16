@@ -6,14 +6,14 @@ A folder structure for empirical economics research projects, designed for AI-as
 
 ```bash
 # 1. Create your project from this template
-gh repo create my-project --template murattasdemir/research-template-bare
+gh repo create my-project --template tasdemir-lab/research-template-bare
 cd my-project
 
 # 2. Run the setup script (creates private workspace directories)
 bash setup_project.sh
 
 # 3. Install the tlab plugin (agentic research workflows)
-claude plugin marketplace add murattasdemir/tlab-research
+claude plugin marketplace add tasdemir-lab/tlab-research
 claude plugin install tlab@tlab-research --scope project
 
 # 4. Initialize R environment
@@ -33,7 +33,7 @@ Rscript -e 'renv::init()'
 - Helper R functions and pipeline orchestrator
 - Setup script for private workspace
 
-### From the [tlab Plugin](https://github.com/murattasdemir/tlab-research) (agentic workflow)
+### From the [tlab Plugin](https://github.com/tasdemir-lab/tlab-research) (agentic workflow)
 - 7 skills: commit, compile-latex, proofread, validate-bib, data-analysis, context-status, deep-audit
 - 2 specialist agents: proofreader, verifier
 - 5 project rules (synced automatically)
@@ -106,7 +106,7 @@ project-name/
 
 **Two-zone architecture.** The project separates the *reproducible pipeline* (code, data, output, paper — tracked by git) from the *research workshop* (notes, facts, decisions — private, gitignored). The `_` prefix marks private folders.
 
-**Plugin-based workflow.** Agentic components (skills, agents, rules, hooks) live in the [tlab plugin](https://github.com/murattasdemir/tlab-research), not in the project repo. Update agentic tools independently with `claude plugin update`.
+**Plugin-based workflow.** Agentic components (skills, agents, rules, hooks) live in the [tlab plugin](https://github.com/tasdemir-lab/tlab-research), not in the project repo. Update agentic tools independently with `claude plugin update`.
 
 **Exploration is first-class.** Experimental analyses live in `code/explorations/` with semantic names. Only promoted analyses write to `output/`.
 
