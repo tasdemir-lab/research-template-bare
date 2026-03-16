@@ -54,6 +54,10 @@ Publication artifacts are saved explicitly but gitignored (regenerated from code
 
 Use `gh release` to distribute compiled PDFs with tagged versions.
 
+## R Dependencies
+
+R dependencies are managed with `renv`. Always run `renv::snapshot()` after installing packages.
+
 ## Key Commands
 
 ```r

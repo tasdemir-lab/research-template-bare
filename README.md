@@ -89,16 +89,28 @@ project-name/
 │   ├── facts.md                      # AI-maintained empirical facts
 │   ├── active-questions.md           # Open research questions
 │   ├── decisions/                    # Research Decision Records
+│   ├── insights/                     # Ideas and hypotheses
+│   ├── discussions/                  # Research discussion notes
+│   ├── evaluations/                  # AI quality reports
+│   ├── plans/                        # Saved plans (plan-first workflow)
 │   └── progress.md                   # Running log
 │
 ├── _lit/                             # Reference materials
 │   ├── papers/                       # PDFs of key papers
-│   └── notes/                        # Reading notes
+│   ├── books/                        # Book chapters
+│   ├── misc/                         # Other docs (policy reports, handouts, etc.)
+│   ├── slides/                       # Other people's presentations
+│   └── notes/                        # Reading notes per paper
+│
+├── _trash/                           # Hook-managed recycle bin (date-bucketed)
+├── tmp/                              # Scratch space
+├── session_logs/                     # AI session progress logs
 │
 │ ── DEPENDENCY LOCKS (tracked) ───────────────────
 │
 ├── renv.lock                         # R dependencies
 ├── .Rprofile                         # renv activation
+├── pyproject.toml                    # Python deps (if needed)
 └── uv.lock                           # Python lock (if needed)
 ```
 
