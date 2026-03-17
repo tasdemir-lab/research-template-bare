@@ -12,7 +12,6 @@ This template uses the `tlab` plugin for agentic research workflows.
 
 Install after cloning:
 ```bash
-claude plugin marketplace add tasdemir-lab/tlab-research
 claude plugin install tlab@tlab-research --scope project
 ```
 
