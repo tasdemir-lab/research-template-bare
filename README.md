@@ -4,12 +4,12 @@ A folder structure for empirical economics research projects, designed for AI-as
 
 ## Quick Start
 
+### Option A: CLI
+
 ```bash
-# 1. Clone this template into a new project
-gh repo clone tasdemir-lab/research-template-bare my-project
+# 1. Create your project from this template
+gh repo create my-project --template tasdemir-lab/research-template-bare --private --clone
 cd my-project
-git remote remove origin
-gh repo create my-project --private --source .
 
 # 2. Run the setup script (creates private workspace directories)
 bash setup_project.sh
@@ -24,6 +24,13 @@ Rscript -e 'renv::init()'
 # Edit CLAUDE.md — replace [BRACKETED PLACEHOLDERS]
 # Edit README.md — replace this section with your project description
 ```
+
+### Option B: GitHub Web Interface
+
+1. Go to the [template repository](https://github.com/tasdemir-lab/research-template-bare)
+2. Click **"Use this template"** → **"Create a new repository"**
+3. Name your repository, set it to **Private**, and click **Create**
+4. Clone your new repository locally and follow steps 2–5 above
 
 ## What You Get
 
