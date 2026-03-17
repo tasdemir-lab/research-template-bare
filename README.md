@@ -15,7 +15,6 @@ gh repo create my-project --private --source .
 bash setup_project.sh
 
 # 3. Install the tlab plugin (agentic research workflows)
-claude plugin marketplace add tasdemir-lab/tlab-research
 claude plugin install tlab@tlab-research --scope project
 
 # 4. Initialize R environment
