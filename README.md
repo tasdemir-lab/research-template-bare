@@ -5,9 +5,11 @@ A folder structure for empirical economics research projects, designed for AI-as
 ## Quick Start
 
 ```bash
-# 1. Create your project from this template
-gh repo create my-project --template tasdemir-lab/research-template-bare
+# 1. Clone this template into a new project
+gh repo clone tasdemir-lab/research-template-bare my-project
 cd my-project
+git remote remove origin
+gh repo create my-project --private --source .
 
 # 2. Run the setup script (creates private workspace directories)
 bash setup_project.sh
