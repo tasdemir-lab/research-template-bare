@@ -9,9 +9,9 @@ echo "Setting up project directories..."
 # Private workspace (gitignored)
 mkdir -p _lab/decisions _lab/insights _lab/discussions _lab/evaluations _lab/plans
 mkdir -p _lit/papers _lit/books _lit/misc _lit/slides _lit/notes
+mkdir -p _lab/logs
 mkdir -p _trash
 mkdir -p tmp
-mkdir -p session_logs
 
 # Data directories (gitignored)
 mkdir -p data/interim

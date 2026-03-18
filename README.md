@@ -100,6 +100,7 @@ project-name/
 │   ├── insights/                     # Ideas and hypotheses
 │   ├── discussions/                  # Research discussion notes
 │   ├── evaluations/                  # AI quality reports
+│   ├── logs/                         # AI session progress logs
 │   ├── plans/                        # Saved plans (plan-first workflow)
 │   └── progress.md                   # Running log
 │
@@ -112,7 +113,6 @@ project-name/
 │
 ├── _trash/                           # Hook-managed recycle bin (date-bucketed)
 ├── tmp/                              # Scratch space
-├── session_logs/                     # AI session progress logs
 │
 │ ── DEPENDENCY LOCKS (tracked) ───────────────────
 │
