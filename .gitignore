@@ -59,7 +59,6 @@ __pycache__/
 
 # ── AI session artifacts ──────────────────────────────
 /.council/
-/session_logs/
 
 # ── Plugin-synced rules (derived from tlab plugin) ───
 /.claude/rules/_plugin_*
