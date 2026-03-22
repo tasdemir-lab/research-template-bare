@@ -53,7 +53,9 @@ Rscript -e 'renv::init()'
 project-name/
 │
 ├── README.md                         # This file
-├── CLAUDE.md                         # AI agent instructions
+├── CLAUDE.md                         # AI agent instructions (single source of truth)
+├── AGENTS.md                         # Codex wrapper → reads CLAUDE.md
+├── GEMINI.md                         # Gemini wrapper → reads CLAUDE.md
 ├── master.bib                        # Master bibliography (shared)
 ├── .claude/                          # Claude Code config
 ├── .gitignore
@@ -88,8 +90,9 @@ project-name/
 ├── assets/                           # External binaries (tracked)
 │
 ├── paper/
-│   ├── manuscript.tex                # Main paper (or .qmd)
-│   └── slides/                       # Conference/seminar presentations
+│   ├── manuscript.qmd                # Main paper (default: Quarto PDF via xelatex)
+│   │                                 #   or manuscript.tex for pure XeLaTeX
+│   └── slides/                       # Presentations (default: Beamer; alt: Quarto Reveal.js)
 │
 │ ── PRIVATE (created by setup_project.sh, gitignored) ─
 │

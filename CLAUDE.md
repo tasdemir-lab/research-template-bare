@@ -1,6 +1,8 @@
 # CLAUDE.md
 
-Guidance for Claude Code when working in this repository.
+Guidance for AI agents working in this repository.
+This file is the **shared instruction source** for all AI agents (Claude Code, Codex, Gemini).
+`AGENTS.md` and `GEMINI.md` are thin wrappers that point here.
 
 **Project:** [PROJECT NAME]
 **Authors:** [AUTHORS]
@@ -23,12 +25,23 @@ claude plugin install tlab@tlab-research --scope project
 - `code/*.qmd` = stable numbered pipeline
 - `code/explorations/*.qmd` = experimental branches
 
+## Session Logs
+
+- Session logs go in **`_lab/logs/`** (format: `YYYY-MM-DD_description.md`).
+- **Never** create `session_logs/` or any other log directory at the repo root.
+
 ## Session Start Protocol
 
 1. Read `_lab/active-questions.md` for open items
 2. Read `_lab/decisions/INDEX.md` for past decisions
 3. Read `_lab/facts.md` for established empirical/institutional facts
 4. When working on analysis, check which explorations exist in `code/explorations/`
+
+## Data Protection
+
+**NEVER modify, overwrite, or delete any data files in `data/raw/`.** Raw data is immutable.
+The only exceptions are documentation files: `CODEBOOK.md`, `README.md`, and `.pdf` codebooks.
+All data transformations flow through the pipeline: `data/raw/` → `data/interim/` → `data/final/`.
 
 ## Data Discovery Protocol
 
@@ -42,6 +55,17 @@ claude plugin install tlab@tlab-research --scope project
 - LaTeX compilation uses `BIBINPUTS=..:$BIBINPUTS` from `paper/`
 - Quarto documents inherit bibliography via `code/_quarto.yml`
 
+## Document Formats
+
+| Document | Default | Secondary |
+|----------|---------|-----------|
+| Paper | Quarto PDF (`pdf-engine: xelatex`) | Pure XeLaTeX (`.tex`) |
+| Slides | Pure Beamer (XeLaTeX) | Quarto Reveal.js |
+
+> Change these defaults when setting up your project.
+> Paper: create `paper/manuscript.qmd` with `format: pdf` and `pdf-engine: xelatex`, or use `paper/manuscript.tex` for pure LaTeX.
+> Slides: use `paper/slides/*.tex` with Beamer class, or switch to Quarto Reveal.js (`.qmd` with `format: revealjs`).
+
 ## Render Convention
 
 Default .qmd output: HTML (for human viewing) + GFM (for AI agent reading).
@@ -52,6 +76,15 @@ Publication artifacts are saved explicitly but gitignored (regenerated from code
 - `modelsummary(models, output = here("output", "tables", "tab_XX_name.tex"))`
 
 Use `gh release` to distribute compiled PDFs with tagged versions.
+
+## R Data Conventions
+
+- Use the `rio` package for all data import/export unless a specific package is required.
+- CSV files may use European/Turkish conventions: `;` as delimiter, `,` as decimal separator.
+  Always inspect with `readLines(file, n = 3)` before importing.
+- When European format is detected, pass explicit arguments: `rio::import(file, sep = ";", dec = ",")`.
+- Watch for encoding issues (UTF-8 vs Latin-1/Windows-1254 for Turkish characters)
+  and whitespace in column names — use `janitor::clean_names()` after import if needed.
 
 ## R Dependencies
 
