@@ -22,8 +22,8 @@ claude plugin install tlab@tlab-research --scope project
 - `_` prefix = private, gitignored (`_lab/`, `_lit/`, `_trash/`)
 - No prefix = reproducible pipeline, tracked (`code/`, `data/`, `output/`, `paper/`)
 - `assets/` = external binaries not produced by the repo (logos, reference docs, shared files)
-- `code/*.qmd` = stable numbered pipeline
-- `code/explorations/*.qmd` = experimental branches
+- `code/*.R` = stable numbered pipeline
+- `code/explorations/` = experimental analyses (`.R` or `.qmd`, user's choice)
 
 ## Session Logs
 
@@ -51,9 +51,8 @@ All data transformations flow through the pipeline: `data/raw/` → `data/interi
 
 ## Bibliography
 
-- `master.bib` lives at the **repo root** (shared by `paper/`, `paper/slides/`, and `code/*.qmd`)
+- `master.bib` lives at the **repo root** (shared by `paper/` and `paper/slides/`)
 - LaTeX compilation uses `BIBINPUTS=..:$BIBINPUTS` from `paper/`
-- Quarto documents inherit bibliography via `code/_quarto.yml`
 
 ## Document Formats
 
@@ -66,14 +65,14 @@ All data transformations flow through the pipeline: `data/raw/` → `data/interi
 > Paper: create `paper/manuscript.qmd` with `format: pdf` and `pdf-engine: xelatex`, or use `paper/manuscript.tex` for pure LaTeX.
 > Slides: use `paper/slides/*.tex` with Beamer class, or switch to Quarto Reveal.js (`.qmd` with `format: revealjs`).
 
-## Render Convention
+## Output Convention
 
-Default .qmd output: HTML (for human viewing) + GFM (for AI agent reading).
-Both render in-place next to the .qmd source and are gitignored.
-
-Publication artifacts are saved explicitly but gitignored (regenerated from code):
+Pipeline scripts (`.R`) save outputs directly to `output/`:
 - `ggsave(here("output", "figures", "fig_XX_name.pdf"), ...)`
 - `modelsummary(models, output = here("output", "tables", "tab_XX_name.tex"))`
+- `saveRDS(result, here("output", "result_name.rds"))`
+
+Agents read figures, tables, and RDS files directly — no intermediate rendering needed.
 
 Use `gh release` to distribute compiled PDFs with tagged versions.
 
@@ -102,8 +101,8 @@ renv::snapshot()
 ```
 
 ```bash
-# Render a single analysis
-quarto render code/04_main_analysis.qmd
+# Run a single analysis script
+Rscript code/04_main_analysis.R
 
 # Run full pipeline
 Rscript code/run_all.R

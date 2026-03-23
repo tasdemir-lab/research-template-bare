@@ -63,12 +63,12 @@ project-name/
 │ ── REPRODUCIBLE PIPELINE (tracked) ──────────────────
 │
 ├── code/
-│   ├── 00_download_data.R            # Data acquisition
+│   ├── 00_download_data.R            # Data acquisition (optional)
 │   ├── 01_clean.R                    # raw -> interim
 │   ├── 02_build_sample.R             # interim -> final
-│   ├── 03_descriptives.qmd           # Summary statistics
-│   ├── 04_main_analysis.qmd          # Core estimation
-│   ├── 05_robustness.qmd             # Sensitivity checks
+│   ├── 03_descriptives.R              # Summary statistics
+│   ├── 04_main_analysis.R             # Core estimation
+│   ├── 05_robustness.R                # Sensitivity checks
 │   ├── helpers/                      # Utility functions
 │   │   ├── _load_all.R               # Source all helpers at once
 │   │   ├── data_helpers.R
