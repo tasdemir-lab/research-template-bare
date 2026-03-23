@@ -7,11 +7,7 @@
 /data/interim/
 /data/final/
 
-# ── Rendered outputs from .qmd (working copies) ──────
-/code/*.html
-/code/*.md
-!/code/*_notes.md
-/code/*.pdf
+# ── Rendered outputs from explorations (.qmd) ─────────
 /code/explorations/*.html
 /code/explorations/*.md
 /code/explorations/*.pdf
