@@ -67,10 +67,14 @@ All data transformations flow through the pipeline: `data/raw/` → `data/interi
 
 ## Output Convention
 
-Pipeline scripts (`.R`) save outputs directly to `output/`:
+**Key distinction — `data/` vs `output/`:**
+- **`data/final/`**: Datasets that serve as *inputs* to analysis scripts (cleaned, merged, format-converted). If a script's product is a dataset that other scripts will `read` as their starting point, it belongs in `data/final/`.
+- **`output/`**: *Results* produced by analysis scripts (estimates, tables, figures, model objects). If a script's product is a derived analytical result — e.g., a fitted model, a correlation matrix, sensitivity bounds — it belongs in `output/`.
+
+Pipeline scripts (`.R`) save results directly to `output/`:
 - `ggsave(here("output", "figures", "fig_XX_name.pdf"), ...)`
 - `modelsummary(models, output = here("output", "tables", "tab_XX_name.tex"))`
-- `saveRDS(result, here("output", "result_name.rds"))`
+- `saveRDS(model_fit, here("output", "model_name.rds"))` for analytical results
 
 Agents read figures, tables, and RDS files directly — no intermediate rendering needed.
 
