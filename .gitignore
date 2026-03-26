@@ -15,12 +15,9 @@
 # ── Generated outputs (reproducible from code) ───────
 # Figures, tables, and compiled documents are regenerated
 # from source. Use `gh release` to distribute final PDFs.
-/output/figures/*
-!/output/figures/.gitkeep
-/output/tables/*
-!/output/tables/.gitkeep
-/output/logs/*
-!/output/logs/.gitkeep
+/output/**
+!/output/**/
+!/output/**/.gitkeep
 /paper/*.pdf
 /paper/slides/*.pdf
 
