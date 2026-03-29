@@ -94,17 +94,21 @@ project-name/
 │   │                                 #   or manuscript.tex for pure XeLaTeX
 │   └── slides/                       # Presentations (default: Beamer; alt: Quarto Reveal.js)
 │
-│ ── PRIVATE (created by setup_project.sh, gitignored) ─
+│ ── RESEARCH KNOWLEDGE (tracked) ─────────────────
 │
-├── _lab/                             # Research workshop
+├── lab_notes/                        # Durable research knowledge
 │   ├── facts.md                      # AI-maintained empirical facts
 │   ├── active-questions.md           # Open research questions
 │   ├── decisions/                    # Research Decision Records
 │   ├── insights/                     # Ideas and hypotheses
-│   ├── discussions/                  # Research discussion notes
-│   ├── evaluations/                  # AI quality reports
+│   └── discussions/                  # Research discussion notes
+│
+│ ── EPHEMERAL (created by setup_project.sh, gitignored) ─
+│
+├── _lab/                             # Session workspace
 │   ├── logs/                         # AI session progress logs
 │   ├── plans/                        # Saved plans (plan-first workflow)
+│   ├── evaluations/                  # AI quality reports
 │   └── progress.md                   # Running log
 │
 ├── _lit/                             # Reference materials
@@ -127,7 +131,7 @@ project-name/
 
 ## Design Principles
 
-**Two-zone architecture.** The project separates the *reproducible pipeline* (code, data, output, paper — tracked by git) from the *research workshop* (notes, facts, decisions — private, gitignored). The `_` prefix marks private folders.
+**Three-zone architecture.** The project separates the *reproducible pipeline* (code, data, output, paper — tracked), *research knowledge* (lab_notes/ — facts, decisions, questions — tracked), and *ephemeral workspace* (_lab/ — logs, plans, evaluations — gitignored). The `_` prefix marks private folders.
 
 **Plugin-based workflow.** Agentic components (skills, agents, rules, hooks) live in the [tlab plugin](https://github.com/tasdemir-lab/tlab-research), not in the project repo. Update agentic tools independently with `claude plugin update`.
 

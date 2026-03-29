@@ -20,6 +20,7 @@ claude plugin install tlab@tlab-research --scope project
 ## Folder Convention
 
 - `_` prefix = private, gitignored (`_lab/`, `_lit/`, `_trash/`)
+- `lab_notes/` = tracked research knowledge (facts, decisions, questions, insights)
 - No prefix = reproducible pipeline, tracked (`code/`, `data/`, `output/`, `paper/`)
 - `assets/` = external binaries not produced by the repo (logos, reference docs, shared files)
 - `code/*.R` = stable numbered pipeline
@@ -32,9 +33,9 @@ claude plugin install tlab@tlab-research --scope project
 
 ## Session Start Protocol
 
-1. Read `_lab/active-questions.md` for open items
-2. Read `_lab/decisions/INDEX.md` for past decisions
-3. Read `_lab/facts.md` for established empirical/institutional facts
+1. Read `lab_notes/active-questions.md` for open items
+2. Read `lab_notes/decisions/INDEX.md` for past decisions
+3. Read `lab_notes/facts.md` for established empirical/institutional facts
 4. When working on analysis, check which explorations exist in `code/explorations/`
 
 ## Data Protection
@@ -123,10 +124,10 @@ Rscript code/run_all.R
 
 ## Research Decision Records
 
-- Check existing decisions in `_lab/decisions/` before proposing new approaches
+- Check existing decisions in `lab_notes/decisions/` before proposing new approaches
 - Never re-explore abandoned approaches without user request
-- When creating a new decision: update `_lab/decisions/INDEX.md`
-- Update `_lab/facts.md` when new empirical facts are established
+- When creating a new decision: update `lab_notes/decisions/INDEX.md`
+- Update `lab_notes/facts.md` when new empirical facts are established
 
 ## Skills Quick Reference
 
