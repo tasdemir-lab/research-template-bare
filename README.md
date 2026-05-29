@@ -63,19 +63,19 @@ project-name/
 │ ── REPRODUCIBLE PIPELINE (tracked) ──────────────────
 │
 ├── code/
-│   ├── 00_download_data.R            # Data acquisition (optional)
-│   ├── 01_clean.R                    # raw -> interim
-│   ├── 02_build_sample.R             # interim -> final
-│   ├── 03_descriptives.R              # Summary statistics
-│   ├── 04_main_analysis.R             # Core estimation
-│   ├── 05_robustness.R                # Sensitivity checks
-│   ├── helpers/                      # Utility functions
+│   ├── 00_download_data.R            # (example) Data acquisition — you create
+│   ├── 01_clean.R                    # (example) raw -> interim
+│   ├── 02_build_sample.R             # (example) interim -> final
+│   ├── 03_descriptives.R             # (example) Summary statistics
+│   ├── 04_main_analysis.R            # (example) Core estimation
+│   ├── 05_robustness.R               # (example) Sensitivity checks
+│   ├── helpers/                      # Utility functions (shipped)
 │   │   ├── _load_all.R               # Source all helpers at once
 │   │   ├── data_helpers.R
 │   │   ├── figure_helpers.R
 │   │   └── table_helpers.R
 │   ├── explorations/                 # Experimental analyses
-│   └── run_all.R                     # Pipeline orchestrator
+│   └── run_all.R                     # Pipeline orchestrator (discovers NN_*.R by glob)
 │
 ├── data/
 │   ├── raw/                          # Original data (untracked, except docs)
@@ -90,9 +90,9 @@ project-name/
 ├── assets/                           # External binaries (tracked)
 │
 ├── paper/
-│   ├── manuscript.qmd                # Main paper (default: Quarto PDF via xelatex)
+│   ├── manuscript.qmd                # (you create) Main paper — default: Quarto PDF via xelatex
 │   │                                 #   or manuscript.tex for pure XeLaTeX
-│   └── slides/                       # Presentations (default: Beamer; alt: Quarto Reveal.js)
+│   └── slides/                       # (you create) Presentations — default: Beamer; alt: Quarto Reveal.js
 │
 │ ── RESEARCH KNOWLEDGE (tracked) ─────────────────
 │
@@ -123,11 +123,15 @@ project-name/
 │
 │ ── DEPENDENCY LOCKS (tracked) ───────────────────
 │
-├── renv.lock                         # R dependencies
-├── .Rprofile                         # renv activation
-├── pyproject.toml                    # Python deps (if needed)
-└── uv.lock                           # Python lock (if needed)
+├── renv.lock                         # R dependencies (created by `renv::init()`)
+├── .Rprofile                         # renv activation (shipped)
+├── pyproject.toml                    # Python deps (if needed; created by `uv init`)
+└── uv.lock                           # Python lock (if needed; created by `uv add`)
 ```
+
+> Items marked `(example)` or `(you create)` are not shipped with the bare template — they
+> illustrate the recommended naming convention. The setup script and `renv::init()` step in
+> Quick Start populate the lock files and ephemeral directories.
 
 ## Design Principles
 
