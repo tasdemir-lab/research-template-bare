@@ -36,7 +36,7 @@ This template uses the `tlab` plugin for agentic research workflows.
 - `lab_notes/` = tracked research knowledge (facts, decisions, questions, insights)
 - No prefix = reproducible pipeline, tracked (`code/`, `data/`, `output/`, `paper/`)
 - `assets/` = external binaries not produced by the repo (logos, reference docs, shared files)
-- `code/*.R` = stable numbered pipeline
+- `code/NN_*.R` = stable numbered pipeline (you create these as analysis develops; `run_all.R` discovers them by glob)
 - `code/explorations/` = experimental analyses (`.R` or `.qmd`, user's choice)
 
 ## Session Logs
@@ -119,10 +119,10 @@ renv::snapshot()
 ```
 
 ```bash
-# Run a single analysis script
+# Run a single analysis script (example name — replace with your own)
 Rscript code/04_main_analysis.R
 
-# Run full pipeline
+# Run full pipeline (discovers and runs all NN_*.R scripts in order)
 Rscript code/run_all.R
 ```
 
