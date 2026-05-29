@@ -1,6 +1,6 @@
 # Research Project Template
 
-A folder structure for empirical economics research projects, designed for AI-assisted workflows with Claude Code, Codex, and Gemini CLI.
+A folder structure for empirical economics research projects, designed for AI-assisted workflows with Claude Code, Codex, and Antigravity.
 
 ## Quick Start
 
@@ -21,7 +21,7 @@ claude plugin install tlab@tlab-research --scope project
 Rscript -e 'renv::init()'
 
 # 5. Fill in project details
-# Edit CLAUDE.md — replace [BRACKETED PLACEHOLDERS]
+# Edit AGENTS.md — replace [BRACKETED PLACEHOLDERS] (canonical; CLAUDE.md @imports it)
 # Edit README.md — replace this section with your project description
 ```
 
@@ -37,7 +37,8 @@ Rscript -e 'renv::init()'
 ### From This Template (scaffolding)
 - Folder structure: `code/`, `data/`, `paper/`, `output/`, `assets/`
 - `.gitignore` configured for research projects
-- `CLAUDE.md` with AI agent instructions
+- `AGENTS.md` — canonical, cross-tool AI agent instructions (read by Codex and Antigravity; Claude Code
+  reads `CLAUDE.md`, which `@import`s it)
 - Helper R functions and pipeline orchestrator
 - Setup script for private workspace
 
@@ -53,9 +54,8 @@ Rscript -e 'renv::init()'
 project-name/
 │
 ├── README.md                         # This file
-├── CLAUDE.md                         # AI agent instructions (single source of truth)
-├── AGENTS.md                         # Codex wrapper → reads CLAUDE.md
-├── GEMINI.md                         # Gemini wrapper → reads CLAUDE.md
+├── AGENTS.md                         # AI agent instructions (canonical, cross-tool)
+├── CLAUDE.md                         # Pointer → @imports AGENTS.md (Claude Code)
 ├── master.bib                        # Master bibliography (shared)
 ├── .claude/                          # Claude Code config
 ├── .gitignore
@@ -133,6 +133,8 @@ project-name/
 
 **Three-zone architecture.** The project separates the *reproducible pipeline* (code, data, output, paper — tracked), *research knowledge* (lab_notes/ — facts, decisions, questions — tracked), and *ephemeral workspace* (_lab/ — logs, plans, evaluations — gitignored). The `_` prefix marks private folders.
 
+**One canonical instruction file.** `AGENTS.md` is the single source of agent instructions, following the cross-tool `AGENTS.md` standard read natively by Codex and Antigravity. Claude Code reads `CLAUDE.md`, which `@import`s `AGENTS.md`, so every tool loads identical guidance from one file.
+
 **Plugin-based workflow.** Agentic components (skills, agents, rules, hooks) live in the [tlab plugin](https://github.com/tasdemir-lab/tlab-research), not in the project repo. Update agentic tools independently with `claude plugin update`.
 
 **Exploration is first-class.** Experimental analyses live in `code/explorations/` with semantic names. Only promoted analyses write to `output/`.
@@ -148,4 +150,4 @@ Template scaffolding rarely changes. If needed, manually sync from this repo.
 
 ## Origin
 
-This template was developed through structured discussions between Claude (Opus 4.6), OpenAI Codex, and Murat Tasdemir (Istanbul Medeniyet University). It is optimized for AI-assisted empirical economics workflows.
+This template was developed through structured discussions between Claude Code, OpenAI Codex, Google Antigravity, and Murat Tasdemir (Istanbul Medeniyet University). It is optimized for AI-assisted empirical economics workflows.

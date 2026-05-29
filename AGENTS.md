@@ -1,7 +1,163 @@
-# Project Instructions for Codex
+# AGENTS.md
 
-**MANDATORY:** Read `CLAUDE.md` in this directory before starting any task.
-It contains all project conventions, folder structure, data rules, and coding standards.
+Guidance for AI agents working in this repository.
+This file is the **canonical, cross-tool instruction source** for all AI agents (Claude Code, Codex, Antigravity).
+`CLAUDE.md` is a pointer that `@import`s this file; there is no `GEMINI.md` (Antigravity loads `AGENTS.md` directly).
 
-All AI agents (Claude, Codex, Gemini) share the same instructions via `CLAUDE.md`.
-Do not proceed with any file modifications until you have read and understood `CLAUDE.md`.
+**Project:** [PROJECT NAME]
+**Authors:** [AUTHORS]
+**Status:** [Early stage / Data collection / Analysis / Writing / Revision]
+
+## Agent Tooling
+
+All three agents read the same instructions from this one canonical file:
+
+- **Claude Code** reads `CLAUDE.md`, which `@import`s this file.
+- **OpenAI Codex** reads `AGENTS.md` natively.
+- **Google Antigravity** reads `AGENTS.md` natively (no `GEMINI.md` is shipped, so Antigravity loads
+  this file rather than a thin pointer).
+
+## Plugin Setup
+
+This template uses the `tlab` plugin for agentic research workflows.
+
+- **Claude Code** — install after cloning:
+  ```bash
+  claude plugin install tlab@tlab-research --scope project
+  ```
+- **Codex** — add the `tlab-research` marketplace in `~/.codex/config.toml`
+  (source: `tasdemir-lab/tlab-research`); Codex then exposes the tlab skills and reads `AGENTS.md`
+  natively.
+- **Antigravity** — no install needed; it reads `AGENTS.md` directly.
+
+## Folder Convention
+
+- `_` prefix = private, gitignored (`_lab/`, `_lit/`, `_trash/`)
+- `lab_notes/` = tracked research knowledge (facts, decisions, questions, insights)
+- No prefix = reproducible pipeline, tracked (`code/`, `data/`, `output/`, `paper/`)
+- `assets/` = external binaries not produced by the repo (logos, reference docs, shared files)
+- `code/*.R` = stable numbered pipeline
+- `code/explorations/` = experimental analyses (`.R` or `.qmd`, user's choice)
+
+## Session Logs
+
+- Session logs go in **`_lab/logs/`** (format: `YYYY-MM-DD_description.md`).
+- **Never** create `session_logs/` or any other log directory at the repo root.
+
+## Session Start Protocol
+
+1. Read `lab_notes/active-questions.md` for open items
+2. Read `lab_notes/decisions/INDEX.md` for past decisions
+3. Read `lab_notes/facts.md` for established empirical/institutional facts
+4. When working on analysis, check which explorations exist in `code/explorations/`
+
+## Data Protection
+
+**NEVER modify, overwrite, or delete any data files in `data/raw/`.** Raw data is immutable.
+The only exceptions are documentation files: `CODEBOOK.md`, `README.md`, and `.pdf` codebooks.
+All data transformations flow through the pipeline: `data/raw/` → `data/interim/` → `data/final/`.
+
+## Data Discovery Protocol
+
+1. Check `data/raw/<source>/CODEBOOK.md` before touching data files
+2. Verify files exist with `ls` before claiming data is missing
+3. Use codebooks to plan column selection before loading large files
+
+## Bibliography
+
+- `master.bib` lives at the **repo root** (shared by `paper/` and `paper/slides/`)
+- LaTeX compilation uses `BIBINPUTS=..:$BIBINPUTS` from `paper/`
+
+## Document Formats
+
+| Document | Default | Secondary |
+|----------|---------|-----------|
+| Paper | Quarto PDF (`pdf-engine: xelatex`) | Pure XeLaTeX (`.tex`) |
+| Slides | Pure Beamer (XeLaTeX) | Quarto Reveal.js |
+
+> Change these defaults when setting up your project.
+> Paper: create `paper/manuscript.qmd` with `format: pdf` and `pdf-engine: xelatex`, or use `paper/manuscript.tex` for pure LaTeX.
+> Slides: use `paper/slides/*.tex` with Beamer class, or switch to Quarto Reveal.js (`.qmd` with `format: revealjs`).
+
+## Output Convention
+
+**Key distinction — `data/` vs `output/`:**
+- **`data/final/`**: Datasets that serve as *inputs* to analysis scripts (cleaned, merged, format-converted). If a script's product is a dataset that other scripts will `read` as their starting point, it belongs in `data/final/`.
+- **`output/`**: *Results* produced by analysis scripts (estimates, tables, figures, model objects). If a script's product is a derived analytical result — e.g., a fitted model, a correlation matrix, sensitivity bounds — it belongs in `output/`.
+
+Pipeline scripts (`.R`) save results directly to `output/`:
+- `ggsave(here("output", "figures", "fig_XX_name.pdf"), ...)`
+- `modelsummary(models, output = here("output", "tables", "tab_XX_name.tex"))`
+- `saveRDS(model_fit, here("output", "model_name.rds"))` for analytical results
+
+Agents read figures, tables, and RDS files directly — no intermediate rendering needed.
+
+Use `gh release` to distribute compiled PDFs with tagged versions.
+
+## R Data Conventions
+
+- Use the `rio` package for all data import/export unless a specific package is required.
+- CSV files may use European/Turkish conventions: `;` as delimiter, `,` as decimal separator.
+  Always inspect with `readLines(file, n = 3)` before importing.
+- When European format is detected, pass explicit arguments: `rio::import(file, sep = ";", dec = ",")`.
+- Watch for encoding issues (UTF-8 vs Latin-1/Windows-1254 for Turkish characters)
+  and whitespace in column names — use `janitor::clean_names()` after import if needed.
+
+## R Dependencies
+
+R dependencies are managed with `renv`. Always run `renv::snapshot()` after installing packages.
+
+## Key Commands
+
+```r
+# Load all helper functions
+library(here)
+source(here("code", "helpers", "_load_all.R"))
+
+# After package changes
+renv::snapshot()
+```
+
+```bash
+# Run a single analysis script
+Rscript code/04_main_analysis.R
+
+# Run full pipeline
+Rscript code/run_all.R
+```
+
+## Git Rules
+
+- **Source binaries** ARE tracked: `data/raw/**/*.pdf` (codebooks), `assets/` (external files)
+- **Generated outputs** are NOT tracked: `output/figures/`, `output/tables/`, `paper/*.pdf`
+- Data files are NOT tracked (raw data files, interim/, final/)
+- Always commit `renv.lock` and `uv.lock` after dependency changes
+- Use `gh release create vX.Y paper/*.pdf output/figures/*` to distribute compiled artifacts
+- Never modify `.gitignore` directly. If a change is needed, propose it and wait for approval.
+
+## Research Decision Records
+
+- Check existing decisions in `lab_notes/decisions/` before proposing new approaches
+- Never re-explore abandoned approaches without user request
+- When creating a new decision: update `lab_notes/decisions/INDEX.md`
+- Update `lab_notes/facts.md` when new empirical facts are established
+
+## Skills Quick Reference
+
+| Command | What It Does |
+|---------|-------------|
+| `/tlab:commit [msg]` | Stage, commit, create PR, merge to main |
+| `/tlab:compile-latex [file]` | 3-pass LaTeX compilation (pdflatex/xelatex + bibtex) |
+| `/tlab:proofread [file]` | Grammar/typo/consistency review (report only) |
+| `/tlab:validate-bib` | Cross-reference citations vs bibliography |
+| `/tlab:data-analysis [dataset]` | End-to-end R analysis workflow |
+| `/tlab:context-status` | Show session health + context usage |
+| `/tlab:deep-audit` | Repository-wide consistency audit |
+
+## Quality Thresholds
+
+| Score | Gate | Meaning |
+|-------|------|---------|
+| 80 | Commit | Good enough to save |
+| 90 | PR | Ready for review |
+| 95 | Excellence | Aspirational |
